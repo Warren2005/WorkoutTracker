@@ -21,12 +21,14 @@ class Exercise:
         self.numberSets += 1 
         updatePersonalBest(weight)
 
+    # REQUIRES: self.sets be non-empty
     # MODIFIES: this
     # EFFECTS: removes the last set from the list of exercises
     def removeSet(self):
-        self.sets.pop()
-        self.numberSets -= 1
-        # TODO: should there be a code to update personal best ? 
+        if (len(self.sets > 0)): 
+            self.sets.pop()
+            self.numberSets -= 1
+            # TODO: should there be a code to update personal best ? 
 
     # REQUIRES: int setNumber in [1, numberSets], int weight > 0, int reps > 0, int rest > 0 (future update to use a try catch)
     # MODIFIES: this
@@ -61,7 +63,7 @@ class Exercise:
 
     def setName(self, name): 
         self.name = name
-        
+
     def setPersonalBest(self, weight): 
         self.personalBest = weight
     
