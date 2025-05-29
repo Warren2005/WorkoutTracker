@@ -5,8 +5,9 @@ import Set
 
 class Exercise: 
 
-    def __init__(self, time):
+    def __init__(self, name, time):
         self.time = time
+        self.name
         self.sets = []
         self.personalBest = 0
         self.numberSets = 0
@@ -50,11 +51,17 @@ class Exercise:
         return self.numberSets
 
     def getTime(self): 
-        return this.time
+        return self.time
 
     def getSets(self):
-        return this.sets
+        return self.sets
 
+    def getExerciseName(self):
+        return self.name
+
+    def setName(self, name): 
+        self.name = name
+        
     def setPersonalBest(self, weight): 
         self.personalBest = weight
     
