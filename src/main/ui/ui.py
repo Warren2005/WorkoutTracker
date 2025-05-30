@@ -2,8 +2,7 @@ from src.main.model.Exercise import Exercise
 from src.main.model.Workout import Workout
 
 
-
-
+# Basic User Interface for workout tracker application
 
 class UserInterface: 
     
@@ -22,20 +21,60 @@ class UserInterface:
         time = int(input("Enter the time taken to complete the exercise in mins: "))
         workout.addExercise(name, time)
 
+    # function to add new sets
+    def addNewSet(self, exercise): 
+        weight = int(input("Enter the weight of the set: "))
+        reps = int(input("Enter the reps of the set: "))
+        time = int(input("Enter the time taken to complete a set: "))
+        exercise.addSet(weight, reps, time)
+
+    # function to display the sets in an exercise 
+    def displaySets(self, exercise):
+        setList = exercise.getSets()
+        print("Set Number \tWeight \tReps \tRest")
+        for i in range(len(setList)): 
+            print(f"{i + 1} \t\t{setList[i].getWeight()} \t{setList[i].getReps()} \t{setList[i].getRest()}")
+
+        while True:
+            print() 
+            print("\nMenu:")
+            print("a. Add a Set")
+            print("b. Remove last Set")
+            print("q. Exit")
+                
+            user_input = input("Enter your choice: ").strip()
+
+            if user_input == "a": 
+                self.addNewSet(exercise)
+            elif user_input == "b": 
+                setList = exercise.getSets()
+                if setList: 
+                    removed = setList.pop()
+                    print(f"Removed last set")
+                else: 
+                    print("No sets to remove.")
+            elif user_input == "q":
+                print("Exiting...")
+                break
+            else:
+                print("Invalid input. Try again.") 
+            
     # function to display exercises
     def displayExercises(self, workout):
         exerciseList = workout.getExercises()
         for i in range(len(exerciseList)): 
             print(f"{i + 1}. {exerciseList[i].getName()}")
         
-        print() 
-        print("\nMenu:")
-        print("a. Add an Exercise")
-        print("b. Remove the Last Exercie")
-        # print("c. Modify an Exercise")
-        print("q. Exit")
+
 
         while True:
+            print() 
+            print("\nMenu:")
+            print("a. Add an Exercise")
+            print("b. Remove the Last Exercie")
+            print("c. Modify an Exercise")
+            print("q. Exit")
+
             user_input = input("Enter your choice: ").strip()
 
             if user_input == "a": 
@@ -47,11 +86,15 @@ class UserInterface:
                     print(f"Removed: {removed.getName()}")
                 else: 
                     print("No exercises to remove.")
-            # elif user_input == "c": 
-            #     num = int(input("Enter the number by the side of the exercise"))
-            #     exerciseList = workout.getExercises()
-            #     exercise = exerciseList[num - 1]
-            #     self.displaySets(exercise)
+            elif user_input == "c": 
+                num = int(input("Enter the number by the side of the exercise: "))
+                exerciseList = workout.getExercises()
+                exercise = exerciseList[num - 1]
+                setList = exercise.getSets()
+                if (len(setList) == 0): 
+                    print("Please enter a Set:")
+                    self.addNewSet(exercise)
+                self.displaySets(exercise)
             elif user_input == "q":
                 print("Exiting...")
                 break
@@ -63,7 +106,7 @@ class UserInterface:
         for i in range(len(self.workoutList)): 
             print(f"{i + 1}. {self.workoutList[i].getName()}")
         
-        num = int(input("Press the number by the workout to view its details")) #num should be in allowed range
+        num = int(input("Press the number by the workout to view its details: ")) #num should be in allowed range
 
         while True:
             workout = self.workoutList[num - 1]

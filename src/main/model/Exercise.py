@@ -21,7 +21,7 @@ class Exercise:
         newSet = Set(weight, reps, rest)
         self.sets.append(newSet)
         self.numberSets += 1 
-        updatePersonalBest(weight)
+        self.updatePersonalBest(weight)
 
     # REQUIRES: self.sets be non-empty
     # MODIFIES: this
@@ -38,7 +38,7 @@ class Exercise:
     def modifySet(self, setNumber, weight, reps, rest): 
         newSet = Set(weight, reps, rest)
         self.sets[setNumber - 1] = newSet 
-        updatePersonalBest(weight)
+        self.updatePersonalBest(weight)
 
     # MODIFIES: this
     # EFFECTS: Updates the personal best value is weight > personalBest
