@@ -9,7 +9,7 @@ class Exercise:
 
     def __init__(self, name, time):
         self.time = time
-        self.name
+        self.name = name
         self.sets = []
         self.personalBest = 0
         self.numberSets = 0
@@ -60,7 +60,7 @@ class Exercise:
     def getSets(self):
         return self.sets
 
-    def getExerciseName(self):
+    def getName(self):
         return self.name
 
     def setName(self, name): 
