@@ -1,4 +1,6 @@
-import Set
+from src.main.model.Set import Set
+
+
 
 # Class used to represent an Exercise. Contains features regarding to a specific exercise 
 # like list of sets, number of sets, personal best, total time for exercise etc. 

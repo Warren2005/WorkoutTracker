@@ -1,5 +1,5 @@
-import Exercise 
-import Set 
+from src.main.model.Set import Set 
+from src.main.model.Exercise import Exercise
 
 
 # Class to represent a workout, with its name and list of exercises performed
